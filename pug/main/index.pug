@@ -1,0 +1,59 @@
+extends ../exclude/layout
+
+block continue_head 
+  meta(property='og:description' content='')
+  meta(name='description' content='')
+  meta(name='author' content='')
+  meta(property='og:title' content=sitename)
+  //- meta(property='og:url' content='MusicSOL.net')
+  //- meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  //- meta(property="og:image" content="https://musicsol.net/assets/img/M-logo.png")
+  title #{sitename} - How many Spider-Men fit in this room?  
+
+block content
+  main.container
+    .row
+      .col-4
+        .card.mt-5(style='width: 18rem; background-color: rgb(255 255 255 / 40%); color: white;')
+          .card-body
+            h5.card-title How many Spider-Men can fit in this room?
+            //- h6.card-subtitle.mb-2.text-muted Card subtitle
+            div.card-text
+              form
+              .form-group
+                label Room size (in sqft)
+                  div
+                    input(type='number')#roomsize.form-control
+                //- br
+                //- button#calc.btn.btn-danger.btn-block Check Spidey Capacity
+              
+                div
+                  label Result:
+                    div
+                      input(readonly)#result.form-control
+
+        
+
+  video#myVideo(autoplay='' muted='' loop='')
+    source(src='bg.mp4' type='video/mp4')
+    |   Your browser does not support HTML5 video.
+  .content
+    h1 Spider-Man calculator - Calculate how many Spider-Men can fit in your room
+    p
+      | If you're like many people out there, sitting in your room wondering how many Spider-Men would fit in my room, then you've reached the right place.
+      br
+      | Just enter your room size in square feet and Spider-man will appear in your room instantly - Guarantee or money back!
+    
+  script.
+    let roomsize = document.getElementById('roomsize');
+    let result = document.getElementById('result');
+    let calcBtn = document.getElementById('calc');
+
+    roomsize.addEventListener('input', calc);
+    function calc(){
+      if(typeof +roomsize.value !== 'number') return false;
+      result.value = Math.floor(roomsize.value/9);
+    }
+  
+block continue_scripts
+  //- script(src='js/scripts.js')

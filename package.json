@@ -1,0 +1,28 @@
+{
+  "name": "repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run pugw && npm run sass",
+    "pug-build": "pug pug/main/ --out ./",
+    "pugw": "pug pug/main/ --out ./ --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass -w ./sass -o ./css --output-style compressed",
+    "sass-build": "node-sass ./sass -o ./css --output-style compressed",
+    "build": "npm run pug-build && npm run sass-build && uncss ./index.html --output ./css/styles.css && npm run html-minifier",
+    "html-minifier": "html-minifier-terser --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true ./index.html | sponge ./index.html",
+    "wpbuild": "webpack --config webpack.prod.js",
+    "wpwatch": "webpack --watch --config webpack.dev.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  },
+  "devDependencies": {
+    "pug": "^3.0.0",
+    "pug-cli": "^1.0.0-alpha6",
+    "uncss": "^0.17.3"
+  }
+}
